@@ -8,7 +8,7 @@ public class ErrorDetails {
     private String details;
 
 
-    public ErrorDetails(Date timestamp,String details, String message) {
+    public ErrorDetails(Date timestamp, String details, String message) {
         this.timestamp = timestamp;
         this.details = details;
         this.message = message;

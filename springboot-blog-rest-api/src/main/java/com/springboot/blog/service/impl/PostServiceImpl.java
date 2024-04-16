@@ -39,7 +39,7 @@ public class PostServiceImpl implements PostService {
     @Override
     public PostResponse getAllPosts(int pageNo, int pageSize, String sortBy, String sortDir) {
         Sort sort = sortDir.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortBy).ascending()
-                :Sort.by(sortBy).descending();
+                : Sort.by(sortBy).descending();
 
         Pageable pageable = PageRequest.of(pageNo, pageSize, sort);
         Page<Post> posts = postRepository.findAll(pageable);
@@ -73,20 +73,11 @@ public class PostServiceImpl implements PostService {
 
     private PostDto mapToDTO(Post post) {
         PostDto postDto = mapper.map(post, PostDto.class);
-//        PostDto postDto = new PostDto();
-//        postDto.setId(post.getId());
-//        postDto.setContent(post.getContent());
-//        postDto.setTitle(post.getTitle());
-//        postDto.setDescription(post.getDescription());
         return postDto;
     }
 
     private Post mapToEntity(PostDto postDto) {
         Post post = mapper.map(postDto, Post.class);
-//        Post post = new Post();
-//        post.setTitle(postDto.getTitle());
-//        post.setDescription(postDto.getContent());
-//        post.setContent(postDto.getContent());
         return post;
     }
 }
