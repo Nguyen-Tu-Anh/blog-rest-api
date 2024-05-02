@@ -50,6 +50,8 @@ public class SecurityConfig {
 //                        authorize.anyRequest().authenticated()
                         authorize.requestMatchers(HttpMethod.GET, "/api/**").permitAll()
                                 .requestMatchers("/api/auth/**").permitAll()
+                                .requestMatchers("/swagger-ui/**").permitAll()
+                                .requestMatchers("/v3/api-docs/**").permitAll()
                                 .anyRequest().authenticated()
                 ).httpBasic(Customizer.withDefaults()
                 ).exceptionHandling(exception -> exception.authenticationEntryPoint(authenticationEntryPoint)
@@ -58,18 +60,4 @@ public class SecurityConfig {
         http.addFilterBefore(authenticationFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
-//    @Bean
-//    public UserDetailsService userDetailsService() {
-//        UserDetails root = User.builder()
-//                .username("root")
-//                .password(passwordEncoder().encode("qazsdfdw123"))
-//                .roles("ADMIN")
-//                .build();
-//        UserDetails user1 = User.builder()
-//                .username("tuanh")
-//                .password(passwordEncoder().encode("qazsdfdw123"))
-//                .roles("USER")
-//                .build();
-//        return new InMemoryUserDetailsManager(root, user1);
-//    }
 }
